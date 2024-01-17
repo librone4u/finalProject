@@ -3,7 +3,7 @@ package SupportClasses;
 import java.io.File;
 import java.io.IOException;
 
-public class CreateNewFile {
+public class FileCreator {
     public File createNewFile(File file, Enum mode){
         final String currentFileName = file.getName();
         final String absolutePath = file.getAbsolutePath();

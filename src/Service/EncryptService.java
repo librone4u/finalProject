@@ -1,6 +1,6 @@
 package Service;
 
-import SupportClasses.CreateNewFile;
+import SupportClasses.FileCreator;
 import SupportClasses.Mode;
 import Transformer.TextTransformer;
 
@@ -8,7 +8,7 @@ import java.io.*;
 
 public class EncryptService {
     private TextTransformer textTransformer = new TextTransformer();
-    private CreateNewFile createNewFile = new CreateNewFile();
+    private FileCreator createNewFile = new FileCreator();
     public void encrypt(File file, int key){
         final File inputStream = file;
         File encryptedFile = createNewFile.createNewFile(file, Mode.ENCRYPT);
@@ -23,15 +23,11 @@ public class EncryptService {
             writer.write(text);
             writer.newLine();
         }
-
-
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
 }
