@@ -9,9 +9,10 @@ import java.io.*;
 public class EncryptService {
     private TextTransformer textTransformer = new TextTransformer();
     private FileCreator createNewFile = new FileCreator();
-    public void encrypt(File file, int key){
-        final File inputStream = file;
-        File encryptedFile = createNewFile.createNewFile(file, Mode.ENCRYPT);
+    public void encrypt(String filePath, String key){
+        File currentFilePath = new File(filePath);
+        final File inputStream = currentFilePath;
+        File encryptedFile = createNewFile.createNewFile(currentFilePath, Mode.ENCRYPT);
         final File outputStream = encryptedFile;
 
         try(BufferedReader reader = new BufferedReader(new FileReader(inputStream));
@@ -19,7 +20,7 @@ public class EncryptService {
 
         String line;
         while((line = reader.readLine()) != null){
-            String text = textTransformer.moveLetterOnRightPosition(key, line);
+            String text = textTransformer.moveLetterOnRightPosition(Integer.parseInt(key), line);
             writer.write(text);
             writer.newLine();
         }

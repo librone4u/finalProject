@@ -10,9 +10,10 @@ public class DecryptService {
     TextTransformer textTransformer = new TextTransformer();
     FileCreator createNewFile = new FileCreator();
 
-    public void decrypt(File file , int key){
-        final File inputStream = file;
-        File decryptedFile = createNewFile.createNewFile(file, Mode.DECRYPT);
+    public void decrypt(String filePath , String key){
+        File currentFilePath = new File(filePath);
+        final File inputStream = currentFilePath;
+        File decryptedFile = createNewFile.createNewFile(currentFilePath, Mode.DECRYPT);
         final File outputStream = decryptedFile;
 
         try(BufferedReader reader = new BufferedReader(new FileReader(inputStream));
@@ -20,7 +21,7 @@ public class DecryptService {
 
             String line;
             while((line = reader.readLine()) != null){
-                String text = textTransformer.moveLetterOnLeftPosition(key, line);
+                String text = textTransformer.moveLetterOnLeftPosition(Integer.parseInt(key), line);
                 writer.write(text);
                 writer.newLine();
             }

@@ -1,12 +1,8 @@
-import Service.DecryptService;
-import Service.EncryptService;
-import Transformer.MapAlphabet;
-import Transformer.TextTransformer;
-
-import java.io.File;
+import SupportClasses.Runner;
 
 public class Main {
     public static void main(String[] args) {
-
+        Runner runner = new Runner();
+        runner.run(args);
     }
 }
