@@ -9,43 +9,35 @@ import java.util.Map;
 public class MapAlphabet {
     final private String lowerCaseAlphabet = "abcdefghijklmnopqrstuvwxyz";
     final private String upperCaseAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    final private String specialSymbol = ".,«»\"\'\\:!? ";
 
-    //modes: right|left
-    public Map<Character, Character> getMapAlphabet(int key, String mode){
+    public Map<Character, Character> getMapAlphabet(int key, String mode) {
         Map<Character, Character> transformedAlphabet = new LinkedHashMap<>();
 
-        if(mode.equals(Constants.RIGHT_MODE)) {
-            //adding to map lower case letter
-            for (int i = 0; i < lowerCaseAlphabet.length(); i++) {
-                int shiftedIndex = (i + key) % lowerCaseAlphabet.length();
-                char originalChar = lowerCaseAlphabet.charAt(i);
-                char shiftedChar = lowerCaseAlphabet.charAt(shiftedIndex);
-                transformedAlphabet.put(originalChar, shiftedChar);
-            }
-            //adding to map upper case letter
-            for (int i = 0; i < upperCaseAlphabet.length(); i++) {
-                int shiftedIndex = (i + key) % upperCaseAlphabet.length();
-                char originalChar = upperCaseAlphabet.charAt(i);
-                char shiftedChar = upperCaseAlphabet.charAt(shiftedIndex);
-                transformedAlphabet.put(originalChar, shiftedChar);
-            }
-
+        if (mode.equals(Constants.RIGHT_MODE)) {
+            addToMap(lowerCaseAlphabet, key, transformedAlphabet);
+            addToMap(upperCaseAlphabet, key, transformedAlphabet);
+            addToMap(specialSymbol, key, transformedAlphabet);
         } else if (mode.equals(Constants.LEFT_MODE)) {
-            //adding to map lower case letter
-            for (int i = 0; i < lowerCaseAlphabet.length(); i++) {
-                int shiftedIndex = (i - key + lowerCaseAlphabet.length()) % lowerCaseAlphabet.length();
-                char originalChar = lowerCaseAlphabet.charAt(i);
-                char shiftedChar = lowerCaseAlphabet.charAt(shiftedIndex);
-                transformedAlphabet.put(originalChar, shiftedChar);
-            }
-            //adding to map upper case letter
-            for (int i = 0; i < upperCaseAlphabet.length(); i++) {
-                int shiftedIndex = (i - key + upperCaseAlphabet.length()) % upperCaseAlphabet.length();
-                char originalChar = upperCaseAlphabet.charAt(i);
-                char shiftedChar = upperCaseAlphabet.charAt(shiftedIndex);
-                transformedAlphabet.put(originalChar, shiftedChar);
-            }
+            addToMap(lowerCaseAlphabet, -key, transformedAlphabet);
+            addToMap(upperCaseAlphabet, -key, transformedAlphabet);
+            addToMap(specialSymbol, -key, transformedAlphabet);
         }
+
         return transformedAlphabet;
+    }
+
+    private void addToMap(String input, int key, Map<Character, Character> map) {
+        int length = input.length();
+
+        for (int i = 0; i < length; i++) {
+            int shiftedIndex = (i + key + length) % length;
+            if (shiftedIndex < 0) {
+                shiftedIndex += length;  // Обработка отрицательных значений
+            }
+            char originalChar = input.charAt(i);
+            char shiftedChar = input.charAt(shiftedIndex);
+            map.put(originalChar, shiftedChar);
+        }
     }
 }
