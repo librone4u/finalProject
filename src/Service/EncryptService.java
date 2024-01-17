@@ -23,10 +23,8 @@ public class EncryptService {
             writer.write(text);
             writer.newLine();
         }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            System.out.println("File not found");;
         }
     }
 

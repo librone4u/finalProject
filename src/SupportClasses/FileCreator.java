@@ -18,8 +18,8 @@ public class FileCreator {
         File newFile = new File(absolutePath.substring(0, absolutePath.lastIndexOf(File.separator) + 1) + nameForNewFiles);
         try {
             newFile.createNewFile();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            System.out.println("Path is wrong");;
         }
         return newFile;
     }

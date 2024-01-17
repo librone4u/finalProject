@@ -24,8 +24,8 @@ public class DecryptService {
                 writer.write(text);
                 writer.newLine();
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            System.out.println("File not found");
         }
     }
 }
