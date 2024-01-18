@@ -8,12 +8,12 @@ import java.io.*;
 
 public class DecryptService {
     TextTransformer textTransformer = new TextTransformer();
-    FileCreator createNewFile = new FileCreator();
+    FileCreator fileCreator = new FileCreator();
 
     public void decrypt(String filePath , String key){
         File currentFilePath = new File(filePath);
         final File inputStream = currentFilePath;
-        File decryptedFile = createNewFile.createNewFile(currentFilePath, Mode.DECRYPT);
+        File decryptedFile = fileCreator.createNewFile(currentFilePath, Mode.DECRYPT);
         final File outputStream = decryptedFile;
 
         try(BufferedReader reader = new BufferedReader(new FileReader(inputStream));

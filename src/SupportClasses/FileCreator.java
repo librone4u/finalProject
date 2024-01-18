@@ -14,9 +14,7 @@ public class FileCreator {
             dotIndex = currentFileName.lastIndexOf(".");
         }
 
-
         final String absolutePath = file.getAbsolutePath();
-
         String nameForNewFiles = null;
 
         if(dotIndex != -1){

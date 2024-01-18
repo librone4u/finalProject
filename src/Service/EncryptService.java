@@ -8,11 +8,12 @@ import java.io.*;
 
 public class EncryptService {
     private TextTransformer textTransformer = new TextTransformer();
-    private FileCreator createNewFile = new FileCreator();
+    private FileCreator fileCreator = new FileCreator();
+
     public void encrypt(String filePath, String key){
         File currentFilePath = new File(filePath);
         final File inputStream = currentFilePath;
-        File encryptedFile = createNewFile.createNewFile(currentFilePath, Mode.ENCRYPT);
+        File encryptedFile = fileCreator.createNewFile(currentFilePath, Mode.ENCRYPT);
         final File outputStream = encryptedFile;
 
         try(BufferedReader reader = new BufferedReader(new FileReader(inputStream));
