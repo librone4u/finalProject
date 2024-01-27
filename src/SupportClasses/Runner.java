@@ -7,12 +7,15 @@ import java.io.File;
 
 public class Runner {
     public void run(String[] arguments){
-        final String MODE = arguments[0];
-        final String FilePath = arguments[1];
-        final String KEY = arguments[2];
+        final String MODE = arguments[Constants.MODE_INDEX];
+        final String FilePath = arguments[Constants.FILE_PATH_INDEX];
+        final String KEY = arguments[Constants.KEY_INDEX];
 
         EncryptService encryptService = new EncryptService();
         DecryptService decryptService = new DecryptService();
+
+        Validator.ValidateInputData(arguments);
+
         if(MODE.equals(Constants.ENCRYPT_MODE)){
             encryptService.encrypt(FilePath, KEY);
         }

@@ -1,6 +1,7 @@
 package SupportClasses;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class FileCreator {
@@ -23,8 +24,8 @@ public class FileCreator {
         File newFile = new File(absolutePath.substring(0, absolutePath.lastIndexOf(File.separator) + 1) + nameForNewFiles);
         try {
             newFile.createNewFile();
-        } catch (Exception e) {
-            System.out.println("Path is wrong");;
+        } catch (IOException e) {
+            System.out.println("Path is wrong");
         }
         return newFile;
     }

@@ -24,8 +24,8 @@ public class EncryptService {
             String text = textTransformer.moveLetterOnRightPosition(Integer.parseInt(key), line);
             writer.write(text);
             writer.newLine();
-        }
-        } catch (Exception e) {
+            }
+        } catch (IOException e) {
             System.out.println("File not found");;
         }
     }
