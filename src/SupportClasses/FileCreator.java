@@ -25,7 +25,7 @@ public class FileCreator {
         try {
             newFile.createNewFile();
         } catch (IOException e) {
-            System.out.println("Path is wrong");
+            System.err.println("Path is wrong");
         }
         return newFile;
     }

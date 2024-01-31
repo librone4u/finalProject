@@ -3,8 +3,6 @@ package SupportClasses;
 import Service.DecryptService;
 import Service.EncryptService;
 
-import java.io.File;
-
 public class Runner {
     public void run(String[] arguments){
         final String MODE = arguments[Constants.MODE_INDEX];
@@ -14,7 +12,7 @@ public class Runner {
         EncryptService encryptService = new EncryptService();
         DecryptService decryptService = new DecryptService();
 
-        Validator.ValidateInputData(arguments);
+        Validator.validateInputData(arguments);
 
         if(MODE.equals(Constants.ENCRYPT_MODE)){
             encryptService.encrypt(FilePath, KEY);
@@ -22,6 +20,5 @@ public class Runner {
         else if(MODE.equals(Constants.DECRYPT_MODE)){
             decryptService.decrypt(FilePath, KEY);
         }
-
     }
 }
